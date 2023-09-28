@@ -51,7 +51,6 @@ export default {
       this.$nextTick(function () {
         axios.get("http://localhost:8081/athletes/top3Men")
           .then((response) => {
-            console.log(response.data)
             this.top3Men = response.data;
           })
           .catch((error) => {
@@ -60,7 +59,6 @@ export default {
 
         axios.get("http://localhost:8081/athletes/top3Women")
         .then((response) => {
-          console.log(response.data)
           this.top3Women = response.data;
         })
         .catch((error) => {
