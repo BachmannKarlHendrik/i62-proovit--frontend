@@ -35,20 +35,19 @@ body, html {
   margin: 0px 8px 0px 0px;
 }
 
-/* Style the blue button */
 .add-button {
-  background-color: #007bff; /* Blue color for the button */
-  color: #fff; /* Text color for the button */
-  padding: 10px 20px; /* Adjust padding as needed */
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 16px; /* Adjust font size as needed */
+  font-size: 16px;
   margin: 0px 8px 0px 8px;
 }
 
-/* Hover effect for the button (optional) */
+
 .add-button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: #0056b3;
 }
 </style>

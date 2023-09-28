@@ -1,0 +1,85 @@
+<template>
+  <div class="container">
+    <h3>{{data.name}}</h3>
+    <AthleteListItemComponent v-for="(athlete,index) in athletesList" :athlete="athlete" :key="index"/>
+    <div class="paginator">
+      <a v-if="onPage != 1" @click="previousPage()">&laquo;</a>
+      <p v-if="!(onPage == 1 && totalPages == 1)">{{ onPage }}</p>
+      <a v-if="onPage!=totalPages" @click="nextPage()">&raquo;</a>
+    </div>
+  </div>
+</template>
+
+<script>
+import axios from 'axios';
+import AthleteListItemComponent from '@/components/AthleteListItemComponent.vue';
+
+export default {
+  name: 'AthleteListComponent',
+  props: {
+    data: Object
+  },
+  components: {
+    AthleteListItemComponent
+  },
+  data() {
+    return{
+      onPage: 1,
+      totalPages: 1,
+      athletesList: []
+    }
+  },
+  mounted() {
+    if(!this.data.isTop3) {
+      this.getPage()
+    }
+  },
+  methods: {
+    previousPage() {
+      this.onPage -= 1
+      this.getPage()
+    },
+
+    nextPage() {
+      this.onPage += 1
+      console.log(this.onPage)
+      this.getPage()
+    },
+
+    getPage() {
+      this.$nextTick(function () {
+        axios.get(this.data.url+"?page="+this.onPage)
+          .then((response) => {
+            this.athletesList = response.data.athletes;
+            this.totalPages = response.data.totalPages;
+            this.onPage = response.data.currentPage;
+          })
+          .catch((error) => {
+            console.error(error)
+          })
+      })
+    }
+  }
+}
+</script>
+
+
+<style scoped>
+.container {
+  border: 2px solid #333;
+  border-radius: 8px;
+  padding: 20px 10px;
+  margin: 8px;
+}
+
+.paginator {
+  display: flex;
+  justify-content: center;
+  margin: 8px;
+}
+
+.paginator > p {
+  margin: 0px;
+  padding: 0px 4px;
+}
+</style>

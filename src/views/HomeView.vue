@@ -1,18 +1,45 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="lists-container">
+      <AthleteListComponent class="list" v-for="(list,index) in lists" :data="list" :key="index"></AthleteListComponent>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import AthleteListComponent from '@/components/AthleteListComponent.vue'
 
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld
+    AthleteListComponent
+  },
+  data() {
+    return {
+      lists: 
+      [{'name':'Hiljutiseimad võistlejad',
+        'url':'http://localhost:8081/athletes/latest',
+        'isTop3':false},
+        
+        {'name':'Pooleliolevad võistlejad',
+        'url':'http://localhost:8081/athletes/inProgress',
+        'isTop3':false},
+
+        {'name':'Top 3',
+        'isTop3':true}
+      ],
+    }
   }
 }
 </script>
+
+<style>
+.lists-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.list {
+  width: 32vw;
+}
+</style>
