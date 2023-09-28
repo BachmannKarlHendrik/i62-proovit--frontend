@@ -1,11 +1,19 @@
 <template>
   <div class="container">
     <h3>{{data.name}}</h3>
-    <AthleteListItemComponent v-for="(athlete,index) in athletesList" :athlete="athlete" :key="index"/>
-    <div class="paginator">
-      <a v-if="onPage != 1" @click="previousPage()">&laquo;</a>
-      <p v-if="!(onPage == 1 && totalPages == 1)">{{ onPage }}</p>
-      <a v-if="onPage!=totalPages" @click="nextPage()">&raquo;</a>
+      <div v-if="!data.isTop3">
+        <AthleteListItemComponent v-for="(athlete,index) in athletesList" :athlete="athlete" :key="index"/>
+        <div class="paginator">
+          <a v-if="onPage != 1" @click="previousPage()">&laquo;</a>
+          <p v-if="!(onPage == 1 && totalPages == 1)">{{ onPage }}</p>
+          <a v-if="onPage!=totalPages" @click="nextPage()">&raquo;</a>
+        </div>
+    </div>
+    <div v-else>
+      <h4>Mehed</h4>
+      <AthleteListItemComponent v-for="(athlete,index) in top3Men" :athlete="athlete" :key="index"/>
+      <h4>Naised</h4>
+      <AthleteListItemComponent v-for="(athlete,index) in top3Women" :athlete="athlete" :key="index"/>
     </div>
   </div>
 </template>
@@ -26,15 +34,41 @@ export default {
     return{
       onPage: 1,
       totalPages: 1,
-      athletesList: []
+      athletesList: [],
+      top3Men: [],
+      top3Women: []
     }
   },
   mounted() {
-    if(!this.data.isTop3) {
+    if(this.data.isTop3) {
+      this.getTop3()
+    }else {
       this.getPage()
     }
   },
   methods: {
+    getTop3() {
+      this.$nextTick(function () {
+        axios.get("http://localhost:8081/athletes/top3Men")
+          .then((response) => {
+            console.log(response.data)
+            this.top3Men = response.data;
+          })
+          .catch((error) => {
+            console.error(error)
+          })
+
+        axios.get("http://localhost:8081/athletes/top3Women")
+        .then((response) => {
+          console.log(response.data)
+          this.top3Women = response.data;
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+      })
+    },
+
     previousPage() {
       this.onPage -= 1
       this.getPage()
