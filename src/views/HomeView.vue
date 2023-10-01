@@ -18,11 +18,11 @@ export default {
     return {
       lists: 
       [{'name':'Hiljutiseimad võistlejad',
-        'url':'http://localhost:8081/athletes/latest',
+        'url':'https://proovitoo.inpropartner.ee/api/athletes/latest',
         'isTop3':false},
         
         {'name':'Pooleliolevad võistlejad',
-        'url':'http://localhost:8081/athletes/inProgress',
+        'url':'https://proovitoo.inpropartner.ee/api/athletes/inProgress',
         'isTop3':false},
 
         {'name':'Top 3',

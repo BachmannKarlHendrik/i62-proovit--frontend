@@ -49,7 +49,7 @@ export default {
   methods: {
     getTop3() {
       this.$nextTick(function () {
-        axios.get("http://localhost:8081/athletes/top3Men")
+        axios.get("https://proovitoo.inpropartner.ee/api/athletes/top3Men")
           .then((response) => {
             this.top3Men = response.data;
           }).catch(e => {
@@ -57,7 +57,7 @@ export default {
             console.error(e)
           })
 
-        axios.get("http://localhost:8081/athletes/top3Women")
+        axios.get("https://proovitoo.inpropartner.ee/api/athletes/top3Women")
         .then((response) => {
           this.top3Women = response.data;
         }).catch(e => {

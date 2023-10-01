@@ -46,7 +46,7 @@ export default {
         this.$toast.open({message: "Võistleja sugu pole valitud!", type: 'error', duration:15000})
         return;
       }
-      axios.post('http://localhost:8081/athlete',{'name':this.athleteName,'isMale':this.gender=='M'?true:false})
+      axios.post('https://proovitoo.inpropartner.ee/api/athlete',{'name':this.athleteName,'isMale':this.gender=='M'?true:false})
         .then(response => {
           this.showModal = false;
           this.athleteName = '';

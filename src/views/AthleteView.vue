@@ -33,7 +33,7 @@ export default {
     }
   },
   mounted() {
-    axios.get("http://localhost:8081/athlete/"+this.$route.params.id)
+    axios.get("https://proovitoo.inpropartner.ee/api/athlete/"+this.$route.params.id)
       .then((response) => {
         this.athlete = response.data
       })
@@ -79,7 +79,7 @@ export default {
         }
       })
       if(!hasError) {
-        axios.put('http://localhost:8081/scores', scoresList)
+        axios.put('https://proovitoo.inpropartner.ee/api/scores', scoresList)
           .then(() => {
             this.$toast.open({message: "Andmed salvestatud", type: 'success', duration:15000})
             this.$router.push('/')
