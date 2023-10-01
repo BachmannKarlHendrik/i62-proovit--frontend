@@ -33,10 +33,12 @@
       scoreFill() {
         if(this.score.event.hasMinutes) {
           return {'filled':this.score.result != null && this.score.resultMinutes != null,
-                'not-filled':this.score.result == null || this.score.resultMinutes == null}
+                  'not-filled':this.score.result == null || this.score.resultMinutes == null,
+                  'error':this.score.result < 0 || this.score.resultMinutes < 0}
         }
         return {'filled':this.score.result!=null,
-                'not-filled':this.score.result == null}
+                'not-filled':this.score.result == null,
+                'error':this.score.result < 0}
       }
     },
     mounted() {
@@ -55,7 +57,6 @@
         if(this.score.event.hasMinutes && this.score.resultMinutes === "") {
           this.score.resultMinutes = null
         }
-        console.log(this.score.resultMinutes)
         this.$emit("updateScore",this.score)
       }
     }
@@ -80,6 +81,10 @@
 
 .filled {
   background-color: #00C851;
+}
+
+.error {
+  background-color:#ff4444 ;
 }
 
 input {

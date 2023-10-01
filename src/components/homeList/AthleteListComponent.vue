@@ -52,8 +52,7 @@ export default {
         axios.get("http://localhost:8081/athletes/top3Men")
           .then((response) => {
             this.top3Men = response.data;
-          })
-          .catch(e => {
+          }).catch(e => {
             this.$toast.open({message: "Viga andmete laadimisel!", type: 'error', duration:15000})
             console.error(e)
           })
@@ -61,8 +60,7 @@ export default {
         axios.get("http://localhost:8081/athletes/top3Women")
         .then((response) => {
           this.top3Women = response.data;
-        })
-        .catch(e => {
+        }).catch(e => {
             this.$toast.open({message: "Viga andmete laadimisel!", type: 'error', duration:15000})
             console.error(e)
           })
@@ -87,8 +85,7 @@ export default {
             this.athletesList = response.data.athletes;
             this.totalPages = response.data.totalPages;
             this.onPage = response.data.currentPage;
-          })
-          .catch((error) => {
+          }).catch((error) => {
             this.$toast.open({message: "Viga andmete laadimisel!", type: 'error', duration:15000})
             console.error(error)
           })

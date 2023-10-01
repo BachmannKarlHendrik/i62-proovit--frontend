@@ -83,8 +83,7 @@ export default {
           .then(() => {
             this.$toast.open({message: "Andmed salvestatud", type: 'success', duration:15000})
             this.$router.push('/')
-          })
-          .catch(e => {
+          }).catch(e => {
             console.log(e)
             this.$toast.open({message: "Salvestamine ebaõnnestus!", type: 'error', duration:15000})
           })
@@ -125,7 +124,15 @@ export default {
   background-color: #ff4444;
 }
 
+.cancel-button:hover{
+  background-color: #CC0000;
+}
+
 .save-button {
   background-color: #00C851;
+}
+
+.save-button:hover{
+  background-color: #007E33;
 }
 </style>
