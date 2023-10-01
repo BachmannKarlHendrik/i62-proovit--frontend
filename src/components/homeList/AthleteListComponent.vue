@@ -20,7 +20,7 @@
 
 <script>
 import axios from 'axios';
-import AthleteListItemComponent from '@/components/AthleteListItemComponent.vue';
+import AthleteListItemComponent from '@/components/homeList/AthleteListItemComponent.vue';
 
 export default {
   name: 'AthleteListComponent',
@@ -53,17 +53,19 @@ export default {
           .then((response) => {
             this.top3Men = response.data;
           })
-          .catch((error) => {
-            console.error(error)
+          .catch(e => {
+            this.$toast.open({message: "Viga andmete laadimisel!", type: 'error', duration:15000})
+            console.error(e)
           })
 
         axios.get("http://localhost:8081/athletes/top3Women")
         .then((response) => {
           this.top3Women = response.data;
         })
-        .catch((error) => {
-          console.error(error)
-        })
+        .catch(e => {
+            this.$toast.open({message: "Viga andmete laadimisel!", type: 'error', duration:15000})
+            console.error(e)
+          })
       })
     },
 
@@ -87,6 +89,7 @@ export default {
             this.onPage = response.data.currentPage;
           })
           .catch((error) => {
+            this.$toast.open({message: "Viga andmete laadimisel!", type: 'error', duration:15000})
             console.error(error)
           })
       })

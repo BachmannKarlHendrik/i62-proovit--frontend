@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import AthleteListComponent from '@/components/AthleteListComponent.vue'
+import AthleteListComponent from '@/components/homeList/AthleteListComponent.vue'
 
 export default {
   name: 'HomeView',
@@ -33,7 +33,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .lists-container {
   display: flex;
   justify-content: space-between;

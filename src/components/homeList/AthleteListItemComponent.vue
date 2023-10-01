@@ -1,7 +1,7 @@
 <template>
-    <div class="athlete-container" :class="{'isReady':isReady}">
-      <p>{{athlete.name}}</p>
-      <p>{{athlete.points}}</p>
+    <div class="athlete-container" :class="{'isReady':isReady}" @click="$router.push({name: 'athlete', params: {id:athlete.id}})">
+        <p>{{athlete.name}}</p>
+        <p>{{athlete.points}}</p>
     </div>
   </template>
   
