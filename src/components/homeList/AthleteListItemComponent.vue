@@ -1,6 +1,6 @@
 <template>
     <div class="athlete-container" :class="{'isReady':isReady}" @click="$router.push({name: 'athlete', params: {id:athlete.id}})">
-        <p>{{athlete.name}}</p>
+        <p>{{athlete.name}} ({{ gender }})</p>
         <p>{{athlete.points}}</p>
     </div>
   </template>
@@ -13,7 +13,8 @@
     },
     data() {
         return{
-            isReady: false
+            isReady: false,
+            gender: this.athlete.isMale ? 'M': 'N'
         }
     },
     mounted() {

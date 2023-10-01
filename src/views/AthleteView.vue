@@ -6,6 +6,9 @@
     <h2>
       Võistleja: {{ athlete.name }}
     </h2>
+    <h2>
+      Sugu: {{ this.athlete.isMale ? 'Mees' : 'Naine' }}
+    </h2>
     <div class="data-grid">
       <AthleteScoreComponent v-for="(score,index) in athlete.scores" :scoreProp="score" :key="index" @updateScore="handleUpdateScore" class="grid-item"/>
     </div>
@@ -58,16 +61,16 @@ export default {
           this.$toast.open({message: "Ükski tulemus ei tohi olla negatiivne!", type: 'error', duration:15000})
           hasError = true
         }
-        else if(score.event.hasMinutes && score.result === null && score.resultMinutes !== null) {
+        else if(score.event.hasMinutes && score.result == null && score.resultMinutes != null) {
           this.$toast.open({message: "Kui minutid on täidetud, peavad olema ka sekundid täidetud!", type: 'error', duration:15000})
           hasError = true
         }
-        else if(score.event.hasMinutes && score.result !== null && score.resultMinutes === null) {
+        else if(score.event.hasMinutes && score.result != null && score.resultMinutes == null) {
           this.$toast.open({message: "Kui sekundid on täidetud, peavad olema ka minutid täidetud!", type: 'error', duration:15000})
           hasError = true
         }
         //Minutid sekunditeks
-        else if(score.event.hasMinutes && score.result !== null && score.resultMinutes !== null) {
+        else if(score.event.hasMinutes && score.result != null && score.resultMinutes != null) {
           let resultWithMinutes = Number(score.result) + (Number(score.resultMinutes)*60)
           scoresList.push({'id':score.id,'result':resultWithMinutes})
         }

@@ -32,8 +32,8 @@
     computed: {
       scoreFill() {
         if(this.score.event.hasMinutes) {
-          return {'filled':this.score.result!==null && this.score.resultMinutes !== null,
-                'not-filled':this.score.result === null || this.score.resultMinutes === null}
+          return {'filled':this.score.result != null && this.score.resultMinutes != null,
+                'not-filled':this.score.result == null || this.score.resultMinutes == null}
         }
         return {'filled':this.score.result!=null,
                 'not-filled':this.score.result == null}
@@ -41,7 +41,7 @@
     },
     mounted() {
       this.$nextTick(function() {
-        if(this.score.event.hasMinutes && this.score.result !== null) {
+        if(this.score.event.hasMinutes && this.score.result != null) {
           this.score.resultMinutes = Math.floor(this.score.result/60)
           this.score.result = this.score.result-(this.score.resultMinutes*60)
         }
@@ -55,6 +55,7 @@
         if(this.score.event.hasMinutes && this.score.resultMinutes === "") {
           this.score.resultMinutes = null
         }
+        console.log(this.score.resultMinutes)
         this.$emit("updateScore",this.score)
       }
     }
